@@ -1,20 +1,14 @@
 $ErrorActionPreference = 'Stop'
 
 $project = Split-Path -Parent $PSScriptRoot
-$out = Join-Path $PSScriptRoot 'bin\SolarFlareShield'
+$out = $PSScriptRoot
 $refsDir = Join-Path $project '.tools\nuget\refs\build\.NETFramework\v4.8'
 $compiler = Join-Path $project '.tools\nuget\compilers\tasks\netcore\bincore\csc.dll'
 $dotnet = Join-Path $project '.rimsearcher\dotnet\dotnet.exe'
 $rimWorld = 'D:\Steam\steamapps\common\RimWorld'
 $harmony = 'D:\Steam\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll'
 
-$defsOut = Join-Path $out 'Defs'
-$texturesOut = Join-Path $out 'Textures'
-New-Item -ItemType Directory -Force -Path (Join-Path $out 'Assemblies'), (Join-Path $out 'About') | Out-Null
-Remove-Item -LiteralPath $defsOut -Recurse -Force -ErrorAction SilentlyContinue
-New-Item -ItemType Directory -Force -Path $defsOut | Out-Null
-Remove-Item -LiteralPath $texturesOut -Recurse -Force -ErrorAction SilentlyContinue
-New-Item -ItemType Directory -Force -Path $texturesOut | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $out 'Assemblies') | Out-Null
 
 $references = Get-ChildItem $refsDir -File -Filter '*.dll' |
     Where-Object { $_.Name -notin @('System.EnterpriseServices.Wrapper.dll', 'System.EnterpriseServices.Thunk.dll') } |
@@ -37,7 +31,4 @@ $arguments += Get-ChildItem (Join-Path $PSScriptRoot 'Source') -File -Filter '*.
 
 & $dotnet @arguments
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-Copy-Item (Join-Path $PSScriptRoot 'About\About.xml') (Join-Path $out 'About\About.xml') -Force
-Copy-Item (Join-Path $PSScriptRoot 'Defs\*') $defsOut -Recurse -Force
-Copy-Item (Join-Path $PSScriptRoot 'Textures\*') $texturesOut -Recurse -Force
 Write-Host "Built $out"

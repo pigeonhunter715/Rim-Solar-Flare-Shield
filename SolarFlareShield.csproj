@@ -9,7 +9,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <ModDir Condition="'$(ModDir)' == ''">$(MSBuildProjectDirectory)\bin\SolarFlareShield</ModDir>
+    <ModDir Condition="'$(ModDir)' == ''">$(MSBuildProjectDirectory)</ModDir>
     <OutputPath>$(ModDir)\Assemblies\</OutputPath>
     <RimWorldDir Condition="'$(RimWorldDir)' == ''">D:\Steam\steamapps\common\RimWorld</RimWorldDir>
     <HarmonyDll Condition="'$(HarmonyDll)' == ''">D:\Steam\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HarmonyDll>
