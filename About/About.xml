@@ -8,6 +8,7 @@
     <li>1.6</li>
   </supportedVersions>
   <description>Adds a research-unlocked, power-hungry building that protects its map from solar flare blackouts while allowing solar flare events to occur normally.</description>
+  <previewImage>Preview.png</previewImage>
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
