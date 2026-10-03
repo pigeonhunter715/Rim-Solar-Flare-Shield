@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ResearchProjectDef>
+    <defName>SolarFlareShieldResearch</defName>
+    <label>太阳耀斑屏蔽装置</label>
+    <description>允许建造太阳耀斑屏蔽装置，保护本地图的电气设备免受太阳耀斑影响。装置待机时消耗少量电力；耀斑发生时会尝试消耗 15000W 形成屏蔽。电力不足时不会生效。</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>MicroelectronicsBasics</li>
+    </prerequisites>
+    <tab>SolarFlareShieldTab</tab>
+    <researchViewX>3</researchViewX>
+    <researchViewY>0</researchViewY>
+  </ResearchProjectDef>
+</Defs>

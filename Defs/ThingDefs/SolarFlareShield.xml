@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef>
+    <defName>SolarFlareShield</defName>
+    <label>太阳耀斑屏蔽装置</label>
+    <description>耀斑来袭时自动打开，保护本地图免受太阳耀斑影响。装置运行时耗电量大。</description>
+    <designationCategory>Power</designationCategory>
+    <tickerType>Normal</tickerType>
+    <category>Building</category>
+    <thingClass>Building</thingClass>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
+    <graphicData>
+      <texPath>SolarFlareShield/Building_RTMagneticShield</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <damageData>
+        <rect>(0.3, 0.3, 1.2, 1.2)</rect>
+      </damageData>
+    </graphicData>
+    <uiIconPath>SolarFlareShield/Building_RTMagneticShield_UI</uiIconPath>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <constructEffect>ConstructMetal</constructEffect>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+    <castEdgeShadows>false</castEdgeShadows>
+    <size>(2,2)</size>
+    <researchPrerequisites>
+      <li>SolarFlareShieldResearch</li>
+    </researchPrerequisites>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <selectable>true</selectable>
+    <rotatable>false</rotatable>
+    <fillPercent>0.30</fillPercent>
+    <pathCost>50</pathCost>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <WorkToBuild>5000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-10</Beauty>
+      <Mass>70</Mass>
+    </statBases>
+    <costList>
+      <Steel>100</Steel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <Plasteel>50</Plasteel>
+    </costList>
+    <comps>
+      <li Class="RimWorld.CompProperties_Power">
+        <compClass>RimWorld.CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+        <shortCircuitInRain>true</shortCircuitInRain>
+        <soundPowerOn>Power_OnSmall</soundPowerOn>
+        <soundPowerOff>Power_OffSmall</soundPowerOff>
+      </li>
+      <li Class="RimWorld.CompProperties_Flickable" />
+      <li Class="SolarFlareShield.CompProperties_SolarFlareShield">
+        <shieldingPowerDrain>15000</shieldingPowerDrain>
+        <rotatorSpeedIdle>0.5</rotatorSpeedIdle>
+        <rotatorSpeedActive>20.0</rotatorSpeedActive>
+      </li>
+      <li Class="RimWorld.CompProperties_Breakdownable" />
+      <li Class="Nivarian_Race.Code.Comps.BuildingComps.CompProperties_NivarianWirelessPowerAdapter" MayRequire="keeptpa.nivarianrace" />
+    </comps>
+  </ThingDef>
+</Defs>

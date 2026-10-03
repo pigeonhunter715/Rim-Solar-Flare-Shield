@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SolarFlareShield</RootNamespace>
+    <AssemblyName>SolarFlareShield</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <PlatformTarget>x64</PlatformTarget>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <ModDir Condition="'$(ModDir)' == ''">$(MSBuildProjectDirectory)\bin\SolarFlareShield</ModDir>
+    <OutputPath>$(ModDir)\Assemblies\</OutputPath>
+    <RimWorldDir Condition="'$(RimWorldDir)' == ''">D:\Steam\steamapps\common\RimWorld</RimWorldDir>
+    <HarmonyDll Condition="'$(HarmonyDll)' == ''">D:\Steam\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HarmonyDll>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\netstandard.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(HarmonyDll)</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <None Include="About\About.xml" />
+  </ItemGroup>
+
+  <Target Name="CopyModAbout" AfterTargets="Build">
+    <Copy SourceFiles="About\About.xml" DestinationFolder="$(ModDir)\About" />
+  </Target>
+
+  <Target Name="ValidateInputs" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(RimWorldDir)\RimWorldWin64_Data\Managed\Assembly-CSharp.dll')"
+           Text="RimWorld Assembly-CSharp.dll was not found. Override RimWorldDir." />
+    <Error Condition="!Exists('$(HarmonyDll)')"
+           Text="0Harmony.dll was not found. Override HarmonyDll." />
+  </Target>
+</Project>

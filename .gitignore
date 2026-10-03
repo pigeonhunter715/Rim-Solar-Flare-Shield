@@ -1,0 +1,5 @@
+bin/
+obj/
+LAST_FIX_STATUS.txt
+*.user
+*.suo
